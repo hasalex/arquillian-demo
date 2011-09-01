@@ -10,14 +10,14 @@ import org.junit.Test;
  *
  * @author alexis
  */
-public class GreeterBeanUnitTest {
+public class GreeterUnitTest {
     
-    GreeterBean bean;
+    Greeter bean;
     
     @Before
     public void initialize() {
-        bean = new GreeterBean();
-        LocationBean locationBean = mock(LocationBean.class);
+        bean = new Greeter();
+        Location locationBean = mock(Location.class);
         when(locationBean.from()).thenReturn("Geneva");
         bean.location = locationBean;
     }

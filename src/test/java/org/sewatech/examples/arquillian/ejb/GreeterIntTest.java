@@ -13,16 +13,17 @@ import org.junit.Test;
  *
  * @author alexis
  */
-public class GreeterBeanIntTest {
+public class GreeterIntTest {
     
     Greeter bean;
     
     @Before
     public void initialize() throws NamingException {
+       System.out.println("*********************");
        Properties properties = new Properties();
        properties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
        Context initialContext = new InitialContext(properties);
-       bean = (Greeter) initialContext.lookup("GreeterBeanLocal");
+       bean = (Greeter) initialContext.lookup("GreeterLocalBean");
     }
     
     @Test

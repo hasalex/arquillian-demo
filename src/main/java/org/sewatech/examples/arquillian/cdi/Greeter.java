@@ -1,17 +1,15 @@
-package org.sewatech.examples.arquillian.ejb;
+package org.sewatech.examples.arquillian.cdi;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /** 
- * Small example of EJB 3.1
+ * Small example of CDI 1.0 bean
  * 
  * @author Alexis Hassler
  */
-@Stateless()
 public class Greeter {
     
-    @EJB
+    @Inject
     Location location;
     
     public String greet(String name) {
