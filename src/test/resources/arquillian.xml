@@ -10,19 +10,6 @@
         <property name="deploymentExportPath">target</property>
     </engine>
       -->
-    
-    <container qualifier="jbossas-remote-7" default="true">
-        <protocol type="jmx-as7">
-            <property name="executionType">REMOTE</property>
-        </protocol>
-    </container>
-
-    <container qualifier="glassfish-embedded">
-        <configuration>
-            <property name="bindHttpPort">7171</property>
-        </configuration>
-    </container>
-
     <!-- logThreshold proposed -->
     <!--
     <container qualifier="jbossas-managed">
