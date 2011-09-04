@@ -295,6 +295,53 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>jbossas6-remote</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-jbossas-remote-6</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.jbossas</groupId>
+                    <artifactId>jboss-as-profileservice-client</artifactId>
+                    <type>pom</type>
+                    <scope>compile</scope>
+                </dependency>
+                <!-- jboss-deployers-client-spi provides deployment exception class -->
+                <dependency>
+                    <groupId>org.jboss.deployers</groupId>
+                    <artifactId>jboss-deployers-client-spi</artifactId>
+                    <version>2.2.0.GA</version>
+                    <scope>compile</scope>
+                </dependency>
+                <!-- weld-api is needed to marshall exceptions -->
+                <dependency>
+                    <groupId>org.jboss.weld</groupId>
+                    <artifactId>weld-api</artifactId>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-web-6.0</artifactId>
+                    <type>pom</type>
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*IntTest.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     
     <repositories>
