@@ -1,0 +1,1 @@
+kill `lsof -i -P | grep 8080 | cut -c 11-15`
