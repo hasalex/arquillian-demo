@@ -3,20 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
-    <!-- Uncomment to have test archives exported to the file system for inspection.
-          This feature can also be controlled using the system property arquillian.deploymentExportPath -->
-    <!-- 
     <engine>
         <property name="deploymentExportPath">target</property>
     </engine>
-      -->
-    <!-- logThreshold proposed -->
-    <!--
-    <container qualifier="jbossas-managed">
-        <configuration>
-            <property name="logThreshold">ERROR</property>
-        </configuration>
-    </container>
-    -->
-
 </arquillian>

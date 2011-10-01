@@ -1,6 +1,5 @@
 package org.sewatech.examples.arquillian.ejb;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 /** 
