@@ -1,30 +1,36 @@
 package org.sewatech.examples.arquillian.ejb;
 
 import java.util.Properties;
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 /**
  *
  * @author alexis
  */
-public class GreeterIntTest {
+@RunWith(Arquillian.class)
+public class GreeterArqTest {
 
-    static Greeter greeter;
-    static Context context;
-
-    @BeforeClass
-    public static void initEJB() throws NamingException {
-       Properties properties = new Properties();
-       properties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
-       context = new InitialContext(properties);
-       greeter = (Greeter) context.lookup("GreeterLocalBean");
+    @Deployment
+    public static Archive deploy() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+                         .addClasses(Greeter.class, Location.class);
     }
+    
+    @EJB
+    Greeter greeter;
 
     @Test 
     public void testGreet() throws Exception {        
