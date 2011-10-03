@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
  */
 public class Location {
     
-    private String placeName = "Geneva";
+    private String placeName = "Switzerland";
     
     public String from() {
         return placeName;

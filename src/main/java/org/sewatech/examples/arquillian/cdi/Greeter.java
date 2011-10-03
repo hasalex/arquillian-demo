@@ -13,10 +13,10 @@ public class Greeter {
     Location location;
     
     public String greet(String name) {
-        return "Hello " + name;
+        return "Hi " + name;
     }
 
     public String greetLocated(String name) {
-        return "Hello " + name + " from " + location.from();
+        return "Hi " + name + " from " + location.from();
     }
 }
