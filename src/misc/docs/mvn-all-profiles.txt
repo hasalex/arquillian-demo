@@ -1,7 +1,8 @@
-mvn clean install -Pglassfish-embedded
-mvn clean install -Pglassfish-remote
-mvn clean install -Popenejb-embedded
-mvn clean install -Pweldse-embedded
-mvn clean install -Pjbossas7-managed
-mvn clean install -Pjbossas7-remote
+mvn clean install -Pglassfish-embedded  
+mvn clean install -Pglassfish-remote    
+mvn clean install -Popenejb-embedded    
+mvn clean install -Pweldse-embedded     
+mvn clean install -Pjbossas7-managed    
+mvn clean install -Pjbossas7-remote     
+mvn clean install -Pjbossas7-aws        
 mvn clean install -Pjbossas6-remote => 500 RS

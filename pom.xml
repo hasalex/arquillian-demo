@@ -1,5 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.sewatech.examples</groupId>
@@ -11,16 +12,17 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.arquillian_core>1.0.0.CR5</version.arquillian_core>
+        <version.arquillian_core>1.0.0.CR7</version.arquillian_core>
         <!-- partition version.arquillian_container as needed for containers with unique versions -->
-        <version.arquillian_container>1.0.0.CR2</version.arquillian_container>
+        <version.arquillian_container>1.0.0.CR3</version.arquillian_container>
+        <version.arquillian_container_glassfish>1.0.0.CR2</version.arquillian_container_glassfish>
+        <version.arquillian_container_openejb>1.0.0.CR2-SNAPSHOT</version.arquillian_container_openejb>
 
         <version.glassfish>3.1</version.glassfish>
         <version.hamcrest>1.2</version.hamcrest>
         <version.hibernate_jpamodelgen>1.1.1.Final</version.hibernate_jpamodelgen>
         <version.jboss_javaee6_spec>2.0.0.Final</version.jboss_javaee6_spec>
         <version.jbossas_6>6.0.0.Final</version.jbossas_6>
-<!--        <version.jbossas_7>7.0.2.Final</version.jbossas_7>-->
         <version.jbossas_7>7.1.0.Beta1b</version.jbossas_7>
         <version.jersey>1.6</version.jersey>
         <version.jetty>8.0.0.M3</version.jetty>
@@ -36,7 +38,6 @@
         <version.weld_api>1.1.Final</version.weld_api>
         <version.mockito>1.8.5</version.mockito>
 
-<!--        <jbossas7.home>/opt/java/jboss-as-web-7.0.2.Final</jbossas7.home>-->
         <jbossas7.home>/opt/java/jboss-as-7.1.0.Beta1b</jbossas7.home>
         <jbossas6.home>/opt/java/jboss-6.0.0.Final</jbossas6.home>
     </properties>
@@ -75,12 +76,10 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <scope>compile</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.glassfish.extras</groupId>
                     <artifactId>glassfish-embedded-all</artifactId>
-                    <scope>compile</scope>
                 </dependency>
             </dependencies>
             <build>
@@ -103,12 +102,18 @@
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-remote-3.1</artifactId>
                     <scope>compile</scope>
+                    <exclusions>
+                      <exclusion>
+                         <groupId>org.jboss.arquillian.container</groupId>
+                         <artifactId>arquillian-container-spi</artifactId>
+                      </exclusion>
+                    </exclusions>
                 </dependency>
                 <!-- FIXME include initialcontext testenricher in container pom -->
                 <dependency>
                     <groupId>org.jboss.arquillian.testenricher</groupId>
                     <artifactId>arquillian-testenricher-initialcontext</artifactId>
-                    <version>1.0.0.CR1</version>
+                    <version>1.0.0.CR7</version>
                     <scope>compile</scope>
                 </dependency>
                 <dependency>
@@ -207,28 +212,22 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-weld-se-embedded-1.1</artifactId>
-                    <scope>compile</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.weld</groupId>
                     <artifactId>weld-core</artifactId>
-                    <scope>compile</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-log4j12</artifactId>
-                    <scope>compile</scope>
                 </dependency>
                 <dependency>
                     <groupId>log4j</groupId>
                     <artifactId>log4j</artifactId>
-                    <scope>compile</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.spec</groupId>
                     <artifactId>jboss-javaee-web-6.0</artifactId>
-                    <type>pom</type>
-                    <scope>compile</scope>
                 </dependency>
             </dependencies>
             <build>
@@ -300,7 +299,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <systemPropertyVariables>
-                                <JBOSS_HOST>aws.sewatech.net</JBOSS_HOST>
+                                <JBOSS_HOST>localhost</JBOSS_HOST>
                                 <arquillian.launch>jbossas7</arquillian.launch>
                             </systemPropertyVariables>
                             <excludes>
@@ -397,6 +396,7 @@
                                 <socksProxyPort>6666</socksProxyPort>
                                 <arquillian.launch>jbossas7</arquillian.launch>
                             </systemPropertyVariables>
+                            <forkMode>always</forkMode>
                             <excludes>
                                 <exclude>**/*IntTest.java</exclude>
                             </excludes>
@@ -439,73 +439,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-weld-se-embedded-1.1</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-weld-ee-embedded-1.1</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-openwebbeans-embedded-1</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-openejb-embedded-3.1</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-jbossas-remote-6</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-jbossas-managed-6</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-glassfish-embedded-3.1</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-glassfish-remote-3.1</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-tomcat-embedded-6</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-jetty-embedded-7</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>container-bom-resin-embedded-4</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-            </dependency>
-
             <dependency>
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-6.0</artifactId>
@@ -562,6 +495,12 @@
                 <artifactId>arquillian-weld-se-embedded-1.1</artifactId>
                 <version>${version.arquillian_container}</version>
                 <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.arquillian.container</groupId>
+                        <artifactId>arquillian-container-spi</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
@@ -572,8 +511,14 @@
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-openejb-embedded-3.1</artifactId>
-                <version>1.0.0.CR2-SNAPSHOT</version>
+                <version>${version.arquillian_container_openejb}</version>
                 <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.arquillian.container</groupId>
+                        <artifactId>arquillian-container-spi</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
@@ -626,14 +571,26 @@
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-remote-3.1</artifactId>
-                <version>${version.arquillian_container}</version>
+                <version>${version.arquillian_container_glassfish}</version>
                 <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.arquillian.container</groupId>
+                        <artifactId>arquillian-container-spi</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                <version>${version.arquillian_container}</version>
+                <version>${version.arquillian_container_glassfish}</version>
                 <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.arquillian.container</groupId>
+                        <artifactId>arquillian-container-spi</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
