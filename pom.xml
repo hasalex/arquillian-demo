@@ -59,11 +59,6 @@
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
         </dependency>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>3.1</version>
-        </dependency>    
     </dependencies>
     
     <profiles>
@@ -101,53 +96,11 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-glassfish-remote-3.1</artifactId>
-                    <scope>compile</scope>
-                    <exclusions>
-                      <exclusion>
-                         <groupId>org.jboss.arquillian.container</groupId>
-                         <artifactId>arquillian-container-spi</artifactId>
-                      </exclusion>
-                    </exclusions>
-                </dependency>
-                <!-- FIXME include initialcontext testenricher in container pom -->
-                <dependency>
-                    <groupId>org.jboss.arquillian.testenricher</groupId>
-                    <artifactId>arquillian-testenricher-initialcontext</artifactId>
-                    <version>1.0.0.CR7</version>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.weld</groupId>
-                    <artifactId>weld-api</artifactId>
-                    <scope>compile</scope>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>javax.enterprise</groupId>
-                            <artifactId>cdi-api</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>com.sun.jersey</groupId>
-                    <artifactId>jersey-bundle</artifactId>
-                    <scope>compile</scope>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>javax.ws.rs</groupId>
-                            <artifactId>jsr311-api</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>com.sun.jersey.contribs</groupId>
-                    <artifactId>jersey-multipart</artifactId>
-                    <scope>compile</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.spec</groupId>
                     <artifactId>jboss-javaee-web-6.0</artifactId>
                     <type>pom</type>
-                    <scope>compile</scope>
                 </dependency>            
             </dependencies>
             <build>
@@ -228,6 +181,7 @@
                 <dependency>
                     <groupId>org.jboss.spec</groupId>
                     <artifactId>jboss-javaee-web-6.0</artifactId>
+                    <type>pom</type>
                 </dependency>
             </dependencies>
             <build>
@@ -290,7 +244,6 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.protocol</groupId>
                     <artifactId>arquillian-protocol-servlet</artifactId>
-                    <version>${version.arquillian_core}</version>
                 </dependency> 
             </dependencies>
             <build>
@@ -311,54 +264,6 @@
             </build>
         </profile>
         <profile>
-            <id>jbossas6-remote</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-jbossas-remote-6</artifactId>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.jbossas</groupId>
-                    <artifactId>jboss-as-profileservice-client</artifactId>
-                    <type>pom</type>
-                    <scope>compile</scope>
-                </dependency>
-                <!-- jboss-deployers-client-spi provides deployment exception class -->
-                <dependency>
-                    <groupId>org.jboss.deployers</groupId>
-                    <artifactId>jboss-deployers-client-spi</artifactId>
-                    <version>2.2.0.GA</version>
-                    <scope>compile</scope>
-                </dependency>
-                <!-- weld-api is needed to marshall exceptions -->
-                <dependency>
-                    <groupId>org.jboss.weld</groupId>
-                    <artifactId>weld-api</artifactId>
-                    <scope>compile</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.spec</groupId>
-                    <artifactId>jboss-javaee-web-6.0</artifactId>
-                    <type>pom</type>
-                    <scope>compile</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/*IntTest.java</exclude>
-                                <exclude>**/*RestArqTest.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <!-- Doesn't work in Netbeans (probably due to the SOCKS proxy) -->
             <!-- Works fine in command line, with some EOFException -->
             <id>jbossas7-aws</id>
@@ -372,31 +277,18 @@
                     <artifactId>jboss-javaee-web-6.0</artifactId>
                     <type>pom</type>
                 </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.protocol</groupId>
-                    <artifactId>arquillian-protocol-servlet</artifactId>
-                    <version>${version.arquillian_core}</version>
-                </dependency> 
             </dependencies>
             <build>
                 <plugins>
                     <plugin>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
-                            <environmentVariables>
-                                <JBOSS_HOST>aws.sewatech.net</JBOSS_HOST>
-                                <!-- Using a proxy : ssh -vfND 6666 -i .amazon/sewazon.pem ec2-user@aws.sewatech.net -->
-                                <socksProxyHost>localhost</socksProxyHost>
-                                <socksProxyPort>6666</socksProxyPort>
-                                <arquillian.launch>jbossas7</arquillian.launch>
-                            </environmentVariables>
                             <systemPropertyVariables>
                                 <JBOSS_HOST>aws.sewatech.net</JBOSS_HOST>
                                 <socksProxyHost>localhost</socksProxyHost>
                                 <socksProxyPort>6666</socksProxyPort>
                                 <arquillian.launch>jbossas7</arquillian.launch>
                             </systemPropertyVariables>
-                            <forkMode>always</forkMode>
                             <excludes>
                                 <exclude>**/*IntTest.java</exclude>
                             </excludes>
@@ -405,7 +297,6 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
     
     <repositories>
@@ -611,6 +502,12 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>org.jboss.arquillian.protocol</groupId>
+                <artifactId>arquillian-protocol-servlet</artifactId>
+                <version>${version.arquillian_core}</version>
+                <scope>test</scope>
+            </dependency> 
+            <dependency>
                 <groupId>org.jboss.jsfunit</groupId>
                 <artifactId>jsfunit-arquillian</artifactId>
                 <version>${version.jsfunit}</version>
@@ -760,6 +657,12 @@
                 <artifactId>weld-api</artifactId>
                 <version>${version.weld_api}</version>
                 <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.enterprise</groupId>
+                        <artifactId>cdi-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.weld</groupId>
@@ -788,13 +691,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.8</version>
-                <configuration>
-                    <useProjectReferences>false</useProjectReferences>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.1</version>
                 <inherited>true</inherited>
@@ -802,7 +698,7 @@
                     <source>1.6</source>
                     <target>1.6</target>
                     <showDeprecation>false</showDeprecation>
-                    <showWarnings>true</showWarnings>
+                    <showWarnings>false</showWarnings>
                     <optimize>true</optimize>
                     <compilerVersion>1.6</compilerVersion>
                     <fork>true</fork>
