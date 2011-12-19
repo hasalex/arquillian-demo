@@ -5,4 +5,10 @@
     <engine>
         <property name="deploymentExportPath">target</property>
     </engine>
+    <container qualifier="jbossas7">
+        <configuration>
+            <property name="managementAddress">${JBOSS_HOST}</property>
+            <property name="managementPort">9999</property>
+        </configuration>
+    </container>
 </arquillian>
