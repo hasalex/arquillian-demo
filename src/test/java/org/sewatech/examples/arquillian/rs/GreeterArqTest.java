@@ -23,6 +23,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -41,9 +42,25 @@ public class GreeterArqTest {
     @ArquillianResource
     URL deploymentUrl;
     
+    /**
+     * Fix the URL when server is behind a firewall or a proxy
+     * 
+     * @throws Exception 
+     */
+    @Before
+    public void fixUrl() throws Exception {
+        String serverHost = System.getProperty("arquillian.server");
+        deploymentUrl = new URL(deploymentUrl.getProtocol(), 
+                              serverHost==null ? "localhost" : serverHost, 
+                              deploymentUrl.getPort(), 
+                              deploymentUrl.getFile());        
+    }
+    
     @Test 
     @RunAsClient
-    public void testGreet() throws Exception {        
+    public void testGreet() throws Exception { 
+        System.out.println(" ==== " + deploymentUrl + " === ");
+        
         String who = "World";
         ClientRequest request = new ClientRequest(deploymentUrl.toString() + "rest/greeter/" + who);
         request.header("Accept", MediaType.TEXT_PLAIN);

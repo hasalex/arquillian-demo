@@ -5,10 +5,14 @@
     <engine>
         <property name="deploymentExportPath">target</property>
     </engine>
+    <defaultProtocol type="${arquillian.protocol:Servlet 3.0}" />
     <container qualifier="jbossas7">
         <configuration>
-            <property name="managementAddress">${JBOSS_HOST}</property>
+            <property name="managementAddress">${arquillian.server}</property>
             <property name="managementPort">9999</property>
         </configuration>
+        <protocol type="Servlet 3.0">
+            <property name="host">${arquillian.server}</property>
+        </protocol>
     </container>
 </arquillian>
