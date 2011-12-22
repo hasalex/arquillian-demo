@@ -23,7 +23,7 @@
         <version.hibernate_jpamodelgen>1.1.1.Final</version.hibernate_jpamodelgen>
         <version.jboss_javaee6_spec>2.0.0.Final</version.jboss_javaee6_spec>
         <version.jbossas_6>6.0.0.Final</version.jbossas_6>
-        <version.jbossas_7>7.1.0.Beta1b</version.jbossas_7>
+        <version.jbossas_7>7.1.0.CR1</version.jbossas_7>
         <version.jersey>1.6</version.jersey>
         <version.jetty>8.0.0.M3</version.jetty>
         <version.junit>4.8.1</version.junit>
@@ -38,7 +38,7 @@
         <version.weld_api>1.1.Final</version.weld_api>
         <version.mockito>1.8.5</version.mockito>
 
-        <jbossas7.home>/opt/java/jboss-as-7.1.0.Beta1b</jbossas7.home>
+        <jbossas7.home>/opt/java/jboss-as-7.1.0.CR1</jbossas7.home>
         <jbossas6.home>/opt/java/jboss-6.0.0.Final</jbossas6.home>
     </properties>
 
@@ -265,45 +265,7 @@
             </build>
         </profile>
         <profile>
-            <!-- Doesn't work in Netbeans (probably due to the SOCKS proxy) -->
-            <!-- Works fine in command line, with some EOFException -->
             <id>jbossas7-aws</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.jboss.as</groupId>
-                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.spec</groupId>
-                    <artifactId>jboss-javaee-web-6.0</artifactId>
-                    <type>pom</type>
-                </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.protocol</groupId>
-                    <artifactId>arquillian-protocol-servlet</artifactId>
-                </dependency> 
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <arquillian.server>aws.sewatech.net</arquillian.server>
-                                <arquillian.launch>jbossas7</arquillian.launch>
-                            </systemPropertyVariables>
-                            <excludes>
-                                <exclude>**/*IntTest.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <!-- Doesn't work in Netbeans (probably due to the SOCKS proxy) -->
-            <!-- Works fine in command line, with some EOFException -->
-            <id>jbossas7-aws-nosocks</id>
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.as</groupId>

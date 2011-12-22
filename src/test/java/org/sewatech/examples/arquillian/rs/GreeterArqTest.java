@@ -2,11 +2,6 @@ package org.sewatech.examples.arquillian.rs;
 
 import java.net.URL;
 import org.sewatech.examples.arquillian.ejb.*;
-import java.util.Properties;
-import javax.ejb.EJB;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.ws.rs.core.MediaType;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -16,10 +11,7 @@ import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
@@ -47,7 +39,7 @@ public class GreeterArqTest {
      * 
      * @throws Exception 
      */
-    @Before
+    //@Before
     public void fixUrl() throws Exception {
         String serverHost = System.getProperty("arquillian.server");
         deploymentUrl = new URL(deploymentUrl.getProtocol(), 
