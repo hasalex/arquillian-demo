@@ -5,7 +5,6 @@
     <engine>
         <property name="deploymentExportPath">target</property>
     </engine>
-    <defaultProtocol type="${arquillian.protocol:Servlet 3.0}" />
     <container qualifier="jbossas7">
         <configuration>
             <property name="managementAddress">${arquillian.server}</property>
