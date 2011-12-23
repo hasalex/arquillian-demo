@@ -16,8 +16,7 @@ import org.jboss.arquillian.core.api.InstanceProducer;
  */
 public class ProtocolMetadataRewriter {
 
-    @Inject
-    @DeploymentScoped
+    @Inject @DeploymentScoped
     private InstanceProducer<ProtocolMetaData> prod;
 
     public void rewrite(@Observes ProtocolMetaData metadata) {
