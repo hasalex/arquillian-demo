@@ -36,14 +36,10 @@ public class ProtocolMetadataRewriter {
         ProtocolMetaData newMetadata = new ProtocolMetaData();
                 
         newMetadata.addContext(cloneHTTPContext(metadata, serverHost));
-
-        // May I should re-attach other contexts
-            // Unfortunately, I cannot know the complete list of contexts.
-        if (metadata.hasContext(JMXContext.class)) {
-            newMetadata.addContext(metadata.getContext(JMXContext.class));
-        }
-        if (metadata.hasContext(RMIContext.class)) {
-            newMetadata.addContext(metadata.getContext(RMIContext.class));
+        for (Object context : metadata.getContexts()) {
+            if (! (context instanceof HTTPContext) ) {
+                newMetadata.addContext(context);
+            }
         }
         
         return newMetadata;

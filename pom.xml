@@ -6,13 +6,13 @@
     <groupId>org.sewatech.examples</groupId>
     <artifactId>arquillian-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>Arquillian Demo</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.arquillian_core>1.0.0.CR7</version.arquillian_core>
+        <version.arquillian_core>1.0.0.Final-SNAPSHOT</version.arquillian_core>
         <!-- partition version.arquillian_container as needed for containers with unique versions -->
         <version.arquillian_container>1.0.0.CR3</version.arquillian_container>
         <version.arquillian_container_glassfish>1.0.0.CR2</version.arquillian_container_glassfish>
@@ -706,6 +706,14 @@
                     <argLine>-Xmx512M</argLine>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>    
     
