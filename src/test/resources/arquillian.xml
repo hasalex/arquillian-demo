@@ -5,6 +5,17 @@
     <engine>
         <property name="deploymentExportPath">target</property>
     </engine>
+    
+    <container qualifier="cloudbees">
+        <configuration>
+            <property name="account">sewatech</property>
+            <property name="application">arqtest0</property>
+            <property name="containerType">jboss</property>
+            <property name="apiUrl">https://api.cloudbees.com/api</property>
+            <property name="propertiesFile">/Users/alexis/.cloudbees/sewatech.properties</property>
+        </configuration>
+    </container>
+    
     <container qualifier="jbossas7">
         <configuration>
             <property name="managementAddress">${arquillian.server}</property>

@@ -1,7 +1,5 @@
 package org.sewatech.examples.arquillian.cdi;
 
-import javax.ejb.Stateless;
-
 /** 
  * @author Alexis Hassler
  */

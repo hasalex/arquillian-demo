@@ -17,6 +17,7 @@
         <version.arquillian_container>1.0.0.CR3</version.arquillian_container>
         <version.arquillian_container_glassfish>1.0.0.CR2</version.arquillian_container_glassfish>
         <version.arquillian_container_openejb>1.0.0.CR2-SNAPSHOT</version.arquillian_container_openejb>
+        <version.arquillian_container_cloudbees>1.0.0.Alpha1-SNAPSHOT</version.arquillian_container_cloudbees>
 
         <version.glassfish>3.1</version.glassfish>
         <version.hamcrest>1.2</version.hamcrest>
@@ -131,14 +132,9 @@
                     <artifactId>openejb-core</artifactId>
                 </dependency>
                 <dependency>
-                    <groupId>javax.inject</groupId>
-                    <artifactId>javax.inject</artifactId>
-                    <version>1</version>
-                </dependency>
-                <dependency>
-                    <groupId>javax.ws.rs</groupId>
-                    <artifactId>jsr311-api</artifactId>
-                    <version>1.1.1</version>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-web-6.0</artifactId>
+                    <type>pom</type>
                 </dependency>
             </dependencies>
             <build>
@@ -298,6 +294,35 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>cloudbees</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-cloudbees</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.spec</groupId>
+                    <artifactId>jboss-javaee-web-6.0</artifactId>
+                    <type>pom</type>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <arquillian.launch>cloudbees</arquillian.launch>
+                            </systemPropertyVariables>
+                            <excludes>
+                                <exclude>**/*IntTest.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     
     <repositories>
@@ -446,6 +471,12 @@
                 <groupId>org.jboss.arquillian.container</groupId>
                 <artifactId>arquillian-jbossas-managed-6</artifactId>
                 <version>${version.arquillian_container}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>arquillian-cloudbees</artifactId>
+                <version>${version.arquillian_container_cloudbees}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>

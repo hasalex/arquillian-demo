@@ -36,12 +36,15 @@ public class ProtocolMetadataRewriter {
         ProtocolMetaData newMetadata = new ProtocolMetaData();
                 
         newMetadata.addContext(cloneHTTPContext(metadata, serverHost));
-        for (Object context : metadata.getContexts()) {
-            if (! (context instanceof HTTPContext) ) {
-                newMetadata.addContext(context);
-            }
-        }
+//        for (Object context : metadata.getContexts()) {
+//            if (! (context instanceof HTTPContext) ) {
+//                newMetadata.addContext(context);
+//            }
+//        }
         
+        newMetadata.addContext(metadata.getContext(JMXContext.class));
+        newMetadata.addContext(metadata.getContext(RMIContext.class));
+
         return newMetadata;
     }
 

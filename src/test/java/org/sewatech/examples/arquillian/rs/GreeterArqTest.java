@@ -36,8 +36,6 @@ public class GreeterArqTest {
     
     @Test @RunAsClient
     public void testGreet() throws Exception { 
-        System.out.println(" ==== " + deploymentUrl + " === ");
-        
         String who = "World";
         ClientRequest request = new ClientRequest(deploymentUrl.toString() + "rest/greeter/" + who);
         request.header("Accept", MediaType.TEXT_PLAIN);

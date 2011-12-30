@@ -23,7 +23,7 @@ public class GreeterArqTest {
                          .addClasses(Greeter.class, Location.class);
     }
     
-    @EJB
+    @EJB(beanName="Greeter")
     Greeter greeter;
 
     @Test 
