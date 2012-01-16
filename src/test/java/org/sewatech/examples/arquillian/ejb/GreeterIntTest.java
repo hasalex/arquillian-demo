@@ -20,7 +20,8 @@ public class GreeterIntTest {
     @BeforeClass
     public static void initEJB() throws NamingException {
        Properties properties = new Properties();
-       properties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+       properties.put(Context.INITIAL_CONTEXT_FACTORY, 
+                      "org.apache.openejb.client.LocalInitialContextFactory");
        context = new InitialContext(properties);
        greeter = (Greeter) context.lookup("GreeterLocalBean");
     }

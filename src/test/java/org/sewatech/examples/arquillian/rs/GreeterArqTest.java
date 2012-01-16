@@ -31,10 +31,9 @@ public class GreeterArqTest {
                          .addClass(JaxRsActivator.class);
     }
     
-    @ArquillianResource
     URL deploymentUrl;
     
-    @Test @RunAsClient
+    @Test
     public void testGreet() throws Exception { 
         String who = "World";
         ClientRequest request = new ClientRequest(deploymentUrl.toString() + "rest/greeter/" + who);
