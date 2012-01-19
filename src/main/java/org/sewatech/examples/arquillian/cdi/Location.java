@@ -5,7 +5,7 @@ package org.sewatech.examples.arquillian.cdi;
  */
 public class Location {
     
-    private String placeName = "Switzerland";
+    private String placeName = "Lyon";
     
     public String from() {
         return placeName;

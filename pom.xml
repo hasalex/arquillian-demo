@@ -39,7 +39,7 @@
         <version.weld_api>1.1.Final</version.weld_api>
         <version.mockito>1.8.5</version.mockito>
 
-        <jbossas7.home>/opt/java/jboss-as-7.1.0.CR1</jbossas7.home>
+        <jbossas7.home>/opt/java/jboss-as-7.1.0.CR1b</jbossas7.home>
         <jbossas6.home>/opt/java/jboss-6.0.0.Final</jbossas6.home>
     </properties>
 
@@ -84,7 +84,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <excludes>
-                                <exclude>**/*IntTest.java</exclude>
+                                <exclude>**/*NoArqIT.java</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -110,7 +110,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <excludes>
-                                <exclude>**/*IntTest.java</exclude>
+                                <exclude>**/*NoArqIT.java</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -217,8 +217,11 @@
                             <environmentVariables>
                                 <JBOSS_HOME>${jbossas7.home}</JBOSS_HOME>
                             </environmentVariables>
+                            <systemPropertyVariables>
+                                <JBOSS_HOME>${jbossas7.home}</JBOSS_HOME>
+                            </systemPropertyVariables>
                             <excludes>
-                                <exclude>**/*IntTest.java</exclude>
+                                <exclude>**/*NoArqIT.java</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -253,7 +256,7 @@
                                 <arquillian.protocol>jmx-as7</arquillian.protocol>
                             </systemPropertyVariables>
                             <excludes>
-                                <exclude>**/*IntTest.java</exclude>
+                                <exclude>**/*NoArqIT.java</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -287,7 +290,7 @@
                                 <arquillian.launch>jbossas7</arquillian.launch>
                             </systemPropertyVariables>
                             <excludes>
-                                <exclude>**/*IntTest.java</exclude>
+                                <exclude>**/*NoArqIT.java</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -316,7 +319,7 @@
                                 <arquillian.launch>cloudbees</arquillian.launch>
                             </systemPropertyVariables>
                             <excludes>
-                                <exclude>**/*IntTest.java</exclude>
+                                <exclude>**/*NoArqIT.java</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -720,6 +723,10 @@
                     <environmentVariables>
                         <REMOTE_HOST>localhost</REMOTE_HOST>
                     </environmentVariables>
+                    <includes>
+                        <include>**/*IT.java</include>
+                        <include>**/*Test.java</include>
+                    </includes>
                 </configuration>
             </plugin>
             <plugin>

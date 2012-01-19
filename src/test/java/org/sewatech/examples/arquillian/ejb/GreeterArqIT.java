@@ -1,20 +1,29 @@
 package org.sewatech.examples.arquillian.ejb;
 
+import javax.ejb.EJB;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import org.junit.runner.RunWith;
 
 /**
  *
  * @author alexis
  */
-public class GreeterTest {
-    
+@RunWith(Arquillian.class)
+public class GreeterArqIT {
+
+    @EJB
     Greeter greeter;
     
-    @Before
-    public void setUp() {
-        greeter = new Greeter();
+    @Deployment
+    public static Archive<?> deploy() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+                         .addClasses(Greeter.class, Location.class);
     }
     
     @Test
@@ -28,13 +37,8 @@ public class GreeterTest {
 
     @Test
     public void testGreetLocated() throws Exception {
-        Location location = mock(Location.class);
-        final String where = "Nowhere";
-        when(location.from()).thenReturn(where);
-        greeter.location = location;
-        
         String who = "World";
-        String expected = "Hello " + who + " from " + where;
+        String expected = "Hello " + who + " from Mix-IT";
         String actual = greeter.greetLocated(who);
         
         assertEquals(expected, actual);        

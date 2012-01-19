@@ -16,24 +16,26 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Ignore;
 
 /**
  *
  * @author alexis
  */
 @RunWith(Arquillian.class)
-public class GreeterArqTest {
+public class GreeterArqIT {
 
-    @Deployment
+    @Deployment(testable=false)
     public static Archive deploy() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                          .addClasses(Greeter.class, Location.class)
                          .addClass(JaxRsActivator.class);
     }
     
+    @ArquillianResource
     URL deploymentUrl;
     
-    @Test
+    @Test @RunAsClient
     public void testGreet() throws Exception { 
         String who = "World";
         ClientRequest request = new ClientRequest(deploymentUrl.toString() + "rest/greeter/" + who);
