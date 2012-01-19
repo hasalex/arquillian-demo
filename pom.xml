@@ -217,6 +217,7 @@
                             <environmentVariables>
                                 <JBOSS_HOME>${jbossas7.home}</JBOSS_HOME>
                             </environmentVariables>
+                            
                             <systemPropertyVariables>
                                 <JBOSS_HOME>${jbossas7.home}</JBOSS_HOME>
                             </systemPropertyVariables>

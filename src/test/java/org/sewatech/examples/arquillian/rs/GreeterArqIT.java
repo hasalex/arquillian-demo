@@ -24,7 +24,7 @@ import org.junit.Ignore;
  */
 @RunWith(Arquillian.class)
 public class GreeterArqIT {
-
+ 
     @Deployment(testable=false)
     public static Archive deploy() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
