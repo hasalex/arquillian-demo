@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
 package org.sewatech.examples.arquillian.rs;
 
 import org.jboss.arquillian.container.spi.client.protocol.metadata.*;

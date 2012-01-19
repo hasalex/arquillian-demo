@@ -12,7 +12,7 @@ import org.junit.Test;
  *
  * @author alexis
  */
-public class GreeterIntTest {
+public class GreeterNoArqIT {
 
     static Greeter greeter;
     static Context context;
@@ -28,7 +28,7 @@ public class GreeterIntTest {
 
     @Test 
     public void testGreet() throws Exception {        
-        String who = "Soft-Shake";
+        String who = "World";
         String expected = "Hello " + who;
         String actual = greeter.greet(who);
         
@@ -37,8 +37,8 @@ public class GreeterIntTest {
 
     @Test
     public void testGreetLocated() throws Exception {
-        String who = "Soft-Shake";
-        String expected = "Hello " + who + " from Geneva";
+        String who = "World";
+        String expected = "Hello " + who + " from Mix-IT";
         String actual = greeter.greetLocated(who);
         
         assertEquals(expected, actual);

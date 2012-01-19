@@ -10,7 +10,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class Location {
     
-    private String placeName = "Geneva";
+    private String placeName = "Mix-IT";
     
     public String from() {
         return placeName;
