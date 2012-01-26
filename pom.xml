@@ -217,11 +217,7 @@
                             <environmentVariables>
                                 <JBOSS_HOME>${jbossas7.home}</JBOSS_HOME>
                             </environmentVariables>
-                            
-                            <systemPropertyVariables>
-                                <JBOSS_HOME>${jbossas7.home}</JBOSS_HOME>
-                            </systemPropertyVariables>
-                            <excludes>
+                            <excludes>   
                                 <exclude>**/*NoArqIT.java</exclude>
                             </excludes>
                         </configuration>
@@ -725,7 +721,7 @@
                         <REMOTE_HOST>localhost</REMOTE_HOST>
                     </environmentVariables>
                     <includes>
-                        <include>**/*IT.java</include>
+                        <include>**/*ArqIT.java</include>
                         <include>**/*Test.java</include>
                     </includes>
                 </configuration>

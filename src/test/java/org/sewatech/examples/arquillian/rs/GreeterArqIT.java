@@ -15,8 +15,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Ignore;
 
 /**
  *
