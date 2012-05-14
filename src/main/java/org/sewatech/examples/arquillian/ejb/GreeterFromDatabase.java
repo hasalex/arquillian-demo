@@ -19,4 +19,10 @@ public class GreeterFromDatabase {
     public Message greet(Long id) {
         return em.find(Message.class, id);
     }
+
+    public void save(String text) {
+        Message message = new Message();
+        message.setText(text);
+        em.persist(message);
+    }
 }

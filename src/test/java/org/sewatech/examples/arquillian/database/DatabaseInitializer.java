@@ -1,31 +1,35 @@
 package org.sewatech.examples.arquillian.database;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.persistence.EntityManager;
+import javax.sql.DataSource;
 import org.sewatech.examples.arquillian.domain.Message;
 
 /**
  * @author Alexis Hassler
  */
 public class DatabaseInitializer {
-    private final EntityManager em;
+    private final Connection connection;
 
-    public DatabaseInitializer(EntityManager em) {
-        this.em = em;
-    }    
+    public DatabaseInitializer(Connection connection) {
+        this.connection = connection;
+    }
     
-    public void clearDatabase() {
-        em.createQuery("delete from Message").executeUpdate();
+    public void clearData() throws SQLException {
+        connection.prepareStatement("DELETE FROM message").executeUpdate();
     }
 
-    public void insertData() {
-        em.persist(buildMessage("First hello"));
-        em.persist(buildMessage("Second hellop"));        
+    public void insertData() throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO message (id, text) values (?, ?)");
+        
+        for (int id = 0; id < 10; id++) {
+            statement.setInt(1, 100 + id);
+            statement.setString(2, "Hello " + id);
+            statement.addBatch();
+        }
+        
+        statement.executeBatch();
     }
-
-    private Message buildMessage(String messageText) {
-        Message firstMessage = new Message();
-        firstMessage.setText(messageText);
-        return firstMessage;
-    }
-
 }
