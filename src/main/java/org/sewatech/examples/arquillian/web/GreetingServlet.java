@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.sewatech.examples.arquillian.ejb.Greeter;
+import org.sewatech.examples.arquillian.ejb.GreeterFromSomewhere;
 
 /**
  * @author alexis
@@ -17,12 +17,12 @@ import org.sewatech.examples.arquillian.ejb.Greeter;
 public class GreetingServlet extends HttpServlet {
 
     @EJB
-    Greeter greeter;
+    GreeterFromSomewhere greeter;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final PrintWriter writer = response.getWriter();
-        writer.append(greeter.greetLocated("the Web"));
+        writer.append(greeter.greet("the Web"));
     }
     
 }

@@ -26,7 +26,7 @@ public class GreeterArqIT {
     @Deployment(testable=false)
     public static Archive deploy() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                         .addClasses(Greeter.class, Location.class)
+                         .addClass(Greeter.class)
                          .addClass(JaxRsActivator.class);
     }
     

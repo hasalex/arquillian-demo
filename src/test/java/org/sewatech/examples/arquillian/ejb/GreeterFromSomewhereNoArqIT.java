@@ -12,9 +12,9 @@ import org.junit.Test;
  *
  * @author alexis
  */
-public class GreeterNoArqIT {
+public class GreeterFromSomewhereNoArqIT {
 
-    static Greeter greeter;
+    static GreeterFromSomewhere greeter;
     static Context context;
 
     @BeforeClass
@@ -23,13 +23,13 @@ public class GreeterNoArqIT {
        properties.put(Context.INITIAL_CONTEXT_FACTORY, 
                       "org.apache.openejb.client.LocalInitialContextFactory");
        context = new InitialContext(properties);
-       greeter = (Greeter) context.lookup("GreeterLocalBean");
+       greeter = (GreeterFromSomewhere) context.lookup("GreeterFromSomewhereLocalBean");
     }
 
-    @Test 
-    public void testGreet() throws Exception {        
+    @Test
+    public void testGreetLocated() throws Exception {
         String who = "World";
-        String expected = "Hello " + who;
+        String expected = "Hello " + who + " from Mix-IT";
         String actual = greeter.greet(who);
         
         assertEquals(expected, actual);

@@ -1,4 +1,4 @@
-package org.sewatech.examples.arquillian.ejb;
+package org.sewatech.examples.arquillian.cdi;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -19,7 +19,7 @@ public class GreeterTest {
     @Test
     public void testGreet() throws Exception {
         String who = "World";
-        String expected = "Hello " + who;
+        String expected = "Hi " + who;
         String actual = greeter.greet(who);
         
         assertEquals(expected, actual);        
