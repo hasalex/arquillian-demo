@@ -14,7 +14,7 @@
 
         <version.arquillian_core>1.0.0.Final</version.arquillian_core>
         <version.arquillian_container>1.0.0.CR3</version.arquillian_container>
-        <version.arquillian_container_glassfish>1.0.0.CR2</version.arquillian_container_glassfish>
+        <version.arquillian_container_glassfish>1.0.0.CR3</version.arquillian_container_glassfish>
         <version.arquillian_container_openejb>1.0.0.Alpha5</version.arquillian_container_openejb>
         <version.arquillian_container_cloudbees>1.0.0.Alpha1-SNAPSHOT</version.arquillian_container_cloudbees>
         <version.arquillian_persistence>1.0.0.Alpha4</version.arquillian_persistence>
@@ -25,7 +25,7 @@
         <version.jboss_javaee6_spec>3.0.0.Final</version.jboss_javaee6_spec>
         <version.jbossas_6>6.0.0.Final</version.jbossas_6>
         <version.jbossas_7>7.1.0.Final</version.jbossas_7>
-        <version.jersey>1.6</version.jersey>
+        <version.jersey>1.14</version.jersey>
         <version.jetty>8.0.0.M3</version.jetty>
         <version.junit>4.10</version.junit>
         <version.log4j>1.2.14</version.log4j>
@@ -41,7 +41,7 @@
         <version.weld_api>1.1.Final</version.weld_api>
         <version.mockito>1.9.0</version.mockito>
 
-        <jbossas7.home>/opt/java/jboss-as-7.1.1.Final</jbossas7.home>
+        <jbossas7.home>/opt/java/jboss-as-7.1.0.Final</jbossas7.home>
         <jbossas6.home>/opt/java/jboss-6.0.0.Final</jbossas6.home>
     </properties>
 
@@ -66,6 +66,10 @@
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-persistence-impl</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet</artifactId>
+        </dependency> 
     </dependencies>
     
     <profiles>
@@ -109,6 +113,10 @@
                     <artifactId>jboss-javaee-web-6.0</artifactId>
                     <type>pom</type>
                 </dependency>            
+                <dependency>
+                    <groupId>com.sun.jersey.contribs</groupId>
+                    <artifactId>jersey-multipart</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -214,6 +222,10 @@
                     <artifactId>jboss-javaee-web-6.0</artifactId>
                     <type>pom</type>
                 </dependency>
+                <dependency>
+                    <groupId>org.jboss.arquillian.protocol</groupId>
+                    <artifactId>arquillian-protocol-servlet</artifactId>
+                </dependency> 
             </dependencies>
             <build>
                 <plugins>
@@ -243,10 +255,6 @@
                     <artifactId>jboss-javaee-web-6.0</artifactId>
                     <type>pom</type>
                 </dependency>
-                <dependency>
-                    <groupId>org.jboss.arquillian.protocol</groupId>
-                    <artifactId>arquillian-protocol-servlet</artifactId>
-                </dependency> 
             </dependencies>
             <build>
                 <plugins>

@@ -1,0 +1,39 @@
+# Créer une nouvelle instance
+ec2-describe-images => AMI-...
+ec2-run-instances ami-eb6bbc82 -g JBoss -k sewazon
+ec2-create-tags i-b69da0d4 --tag Name="INSA demo"
+ec2-associate-address 107.20.184.81 -i i-b69da0d4
+
+# ip=`curl -s http://aws.sewatech.net:8080/arq/ip`
+$EC2_HOME/bin/ec2-authorize JBoss -P tcp -p 1090-1091 -s $ip/32
+$EC2_HOME/bin/ec2-authorize JBoss -P tcp -p 9990 -s $ip/32
+$EC2_HOME/bin/ec2-authorize JBoss -P tcp -p 9999 -s $ip/32
+
+ssh -i ~/.amazon/sewazon.pem ec2-user@aws.sewatech.net
+ssh-keygen -R aws.sewatech.net
+
+# Deploy to AWS JBoss
+bin/jboss-admin.sh
+connect aws.sewatech.net
+cp /Volumes/MacHDD/Projet/softshake/arq-prez/arquillian-demo/target/arquillian-demo-1.0-SNAPSHOT.war /Volumes/MacHDD/Stockage/demo.war 
+deploy --force ~/Stockage/demo.war
+undeploy demo.war
+
+
+
+
+# JUnit
+    @Test
+    public void testGreetLocated() throws Exception {
+        Location location = mock(Location.class);
+        String defaultLocation = "nowhere";
+        when(location.from()).thenReturn(defaultLocation);
+        greeter.location = location;
+        
+        
+        String who = "Soft-Shake";
+        String expected = "Hello " + who + " from " + defaultLocation;
+        String actual = greeter.greetLocated(who);
+        
+        assertEquals(expected, actual);
+    }

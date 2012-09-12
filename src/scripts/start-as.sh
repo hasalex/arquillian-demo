@@ -3,7 +3,7 @@ echo `pwd`;
 
 jbossas6_home=/opt/java/jboss-6.0.0.Final
 jbossas7_home=/opt/java/jboss-as-web-7.0.1.Final
-glassfish3_home=/opt/java/glassfish-3.1
+glassfish3_home=/Applications/NetBeans/glassfish-3.1.2
 
 case $1 in
 g3)

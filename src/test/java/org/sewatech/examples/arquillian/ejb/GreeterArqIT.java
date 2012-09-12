@@ -19,11 +19,11 @@ public class GreeterArqIT {
 
     @Deployment
     public static Archive<?> deploy(){
-        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+        return ShrinkWrap.create(JavaArchive.class)
                          .addClass(Greeter.class);
     }
       
-    @EJB  // Pour cloudbees : (beanName="Greeter")
+    @EJB(beanName="Greeter")
     Greeter greeter;
     
     @Test 
