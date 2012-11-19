@@ -13,15 +13,20 @@
             <property name="application">arqtest0</property>
             <property name="containerType">jboss</property>
             <property name="apiUrl">https://api.cloudbees.com/api</property>
-            <!--<property name="propertiesFile">/Users/alexis/.cloudbees/sewatech.properties</property>-->
+            <property name="propertiesFile">/Users/alexis/.cloudbees/cloudbees-api.properties</property>
         </configuration>
     </container>
     
     <container qualifier="jbossas7">
         <configuration>
-            <property name="managementAddress">localhost</property>
+            <property name="managementAddress">${arquillian.server}</property>
             <property name="managementPort">9999</property>
+            <property name="username">alexis</property>
+            <property name="password">hassler</property>
         </configuration>
+        <protocol type="Servlet 3.0">
+            <property name="host">${arquillian.server}</property>
+        </protocol>
     </container>
 
     <extension qualifier="persistence">

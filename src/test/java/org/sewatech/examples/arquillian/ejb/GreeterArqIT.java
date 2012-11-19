@@ -1,7 +1,5 @@
 package org.sewatech.examples.arquillian.ejb;
 
-import static org.junit.Assert.*;
-import javax.ejb.EJB;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -9,6 +7,10 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.ejb.EJB;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  *
@@ -23,7 +25,7 @@ public class GreeterArqIT {
                          .addClass(Greeter.class);
     }
       
-    @EJB(beanName="Greeter")
+    @EJB
     Greeter greeter;
     
     @Test 
