@@ -5,7 +5,7 @@
              version="2.0">
     <persistence-unit name="demo" transaction-type="JTA">
         <jta-data-source>java:/jdbc/sample</jta-data-source>
-        <class>org.sewatech.examples.arquillian.domain.Message</class>
+        <class>org.sewatech.examples.arquillian.domain.BlaBla</class>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />

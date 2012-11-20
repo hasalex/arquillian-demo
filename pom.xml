@@ -24,7 +24,7 @@
         <version.hibernate_jpamodelgen>1.1.1.Final</version.hibernate_jpamodelgen>
         <version.jboss_javaee6_spec>3.0.0.Final</version.jboss_javaee6_spec>
         <version.jbossas_6>6.0.0.Final</version.jbossas_6>
-        <version.jbossas_7>7.1.0.Final</version.jbossas_7>
+        <version.jbossas_7>7.1.2.Final</version.jbossas_7>
         <version.jersey>1.14</version.jersey>
         <version.jetty>8.0.0.M3</version.jetty>
         <version.junit>4.10</version.junit>
@@ -35,13 +35,13 @@
         <version.openwebbeans>1.0.0</version.openwebbeans>
         <version.resin>4.0.20</version.resin>
         <version.resteasy>2.0.1.GA</version.resteasy>
-        <version.slf4j>1.5.10</version.slf4j>
+        <version.slf4j>1.5.8</version.slf4j>
         <version.tomcat>6.0.33</version.tomcat>
         <version.weld_core>1.1.1.Final</version.weld_core>
         <version.weld_api>1.1.Final</version.weld_api>
         <version.mockito>1.9.0</version.mockito>
 
-        <jbossas7.home>/opt/java/jboss-as-7.1.0.Final</jbossas7.home>
+        <jbossas7.home>/opt/java/jboss-as-7</jbossas7.home>
         <jbossas6.home>/opt/java/jboss-6.0.0.Final</jbossas6.home>
     </properties>
 
@@ -61,10 +61,22 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-persistence-impl</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
@@ -117,6 +129,10 @@
                     <groupId>com.sun.jersey.contribs</groupId>
                     <artifactId>jersey-multipart</artifactId>
                 </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -159,7 +175,7 @@
                             <!-- fork to avoid OpenEJB initialization problems -->
                             <forkMode>always</forkMode>
                             <includes>
-                                <include>org/sewatech/examples/arquillian/ejb/*Test.java</include>
+                                <include>org/sewatech/examples/arquillian/ejb/*IT.java</include>
                             </includes>
                         </configuration>
                     </plugin>
@@ -181,17 +197,13 @@
                     <artifactId>weld-core</artifactId>
                 </dependency>
                 <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </dependency>
-                <dependency>
                     <groupId>org.jboss.spec</groupId>
                     <artifactId>jboss-javaee-web-6.0</artifactId>
                     <type>pom</type>
+                </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
                 </dependency>
             </dependencies>
             <build>
@@ -200,7 +212,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <includes>
-                                <include>org/sewatech/examples/arquillian/cdi/*.java</include>
+                                <include>org/sewatech/examples/arquillian/cdi/*IT.java</include>
                             </includes>
                         </configuration>
                     </plugin>
@@ -225,6 +237,10 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.protocol</groupId>
                     <artifactId>arquillian-protocol-servlet</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
                 </dependency>
             </dependencies>
             <build>
@@ -254,6 +270,10 @@
                     <groupId>org.jboss.spec</groupId>
                     <artifactId>jboss-javaee-web-6.0</artifactId>
                     <type>pom</type>
+                </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
                 </dependency>
             </dependencies>
             <build>
@@ -289,6 +309,10 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.protocol</groupId>
                     <artifactId>arquillian-protocol-servlet</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
                 </dependency>
             </dependencies>
             <build>
@@ -336,6 +360,10 @@
                     <groupId>org.apache.derby</groupId>
                     <artifactId>derbyclient</artifactId>
                 </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -368,6 +396,10 @@
                     <artifactId>jboss-javaee-web-6.0</artifactId>
                     <type>pom</type>
                 </dependency>
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </dependency>
             </dependencies>
             <build>
                 <plugins>
@@ -396,7 +428,7 @@
                 <updatePolicy>never</updatePolicy>
             </releases>
             <snapshots>
-                <!-- temporary until we get to Arquillian 1.0.0.Final -->
+                <!-- temporary until all Arquillian artefacts get Final (or end of world) -->
                 <enabled>true</enabled>
             </snapshots>
         </repository>
@@ -826,7 +858,8 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!-- mvn exec:java -Dderby.system.home=/Users/alexis/ProjetBis/conference/arq-prez/arquillian-persistence-demo/database -->
+                <!-- mvn exec:java -Pjbossas7-persistence -Dderby.system.home=database -->
+                <!-- Connection : jdbc:derby://localhost:1527/demodb, sa/sa-->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>

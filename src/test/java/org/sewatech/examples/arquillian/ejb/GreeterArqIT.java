@@ -28,7 +28,7 @@ public class GreeterArqIT {
     @EJB
     Greeter greeter;
     
-    @Test 
+    @Test
     public void testGreet() throws Exception {        
         String who = "World";
         String expected = "Hello " + who;

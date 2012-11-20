@@ -3,7 +3,8 @@ package org.sewatech.examples.arquillian.ejb;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.sewatech.examples.arquillian.domain.Message;
+
+import org.sewatech.examples.arquillian.domain.BlaBla;
 
 /** 
  * Small example of EJB 3.1, with DB access
@@ -16,12 +17,12 @@ public class GreeterFromDatabase {
     @PersistenceContext
     private EntityManager em;
     
-    public Message greet(Long id) {
-        return em.find(Message.class, id);
+    public BlaBla greet(Long id) {
+        return em.find(BlaBla.class, id);
     }
 
     public void save(String text) {
-        Message message = new Message();
+        BlaBla message = new BlaBla();
         message.setText(text);
         em.persist(message);
     }

@@ -3,9 +3,6 @@ package org.sewatech.examples.arquillian.database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-import org.sewatech.examples.arquillian.domain.Message;
 
 /**
  * @author Alexis Hassler
@@ -18,11 +15,11 @@ public class DatabaseInitializer {
     }
     
     public void clearData() throws SQLException {
-        connection.prepareStatement("DELETE FROM message").executeUpdate();
+        connection.prepareStatement("DELETE FROM BlaBla").executeUpdate();
     }
 
     public void insertData() throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO message (id, text) values (?, ?)");
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO BlaBla (id, text) values (?, ?)");
         
         for (int id = 0; id < 10; id++) {
             statement.setInt(1, 100 + id);

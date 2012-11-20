@@ -5,8 +5,9 @@
     <engine>
         <property name="deploymentExportPath">target</property>
     </engine>
-    <defaultProtocol type="Servlet 3.0" />
-    
+
+    <defaultProtocol type="Servlet 3.0"/>
+
     <container qualifier="cloudbees">
         <configuration>
             <property name="account">sewatech</property>
@@ -31,6 +32,5 @@
 
     <extension qualifier="persistence">
         <property name="defaultDataSource">java:/jdbc/sample</property>
-        <property name="userTransactionJndi">java:jboss/UserTransaction</property>
     </extension>
 </arquillian>

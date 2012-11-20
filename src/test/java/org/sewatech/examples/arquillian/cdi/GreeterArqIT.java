@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Arquillian.class)
 public class GreeterArqIT {
 
-    @Deployment
+    @Deployment //@OverProtocol("Local")
     public static Archive<?> deploy() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addClasses(Greeter.class, Location.class)
