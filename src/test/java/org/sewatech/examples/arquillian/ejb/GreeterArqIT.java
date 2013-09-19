@@ -12,16 +12,12 @@ import javax.ejb.EJB;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- *
- * @author alexis
- */
 @RunWith(Arquillian.class)
 public class GreeterArqIT {
 
     @Deployment
     public static Archive<?> deploy(){
-        return ShrinkWrap.create(JavaArchive.class)
+        return ShrinkWrap.create(JavaArchive.class, "test.jar")
                          .addClass(Greeter.class);
     }
       

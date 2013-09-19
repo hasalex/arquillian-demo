@@ -1,28 +1,29 @@
 package org.sewatech.examples.arquillian.ejb;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.sewatech.examples.arquillian.database.DatabaseInitializer;
-import org.sewatech.examples.arquillian.domain.BlaBla;
+import org.jboss.arquillian.container.test.api.*;
+import org.jboss.arquillian.junit.*;
+import org.jboss.arquillian.persistence.*;
+import org.jboss.shrinkwrap.api.*;
+import org.jboss.shrinkwrap.api.asset.*;
+import org.jboss.shrinkwrap.api.spec.*;
+import org.junit.*;
+import org.junit.runner.*;
+import org.sewatech.examples.arquillian.database.*;
+import org.sewatech.examples.arquillian.domain.*;
 
-import javax.annotation.Resource;
-import javax.ejb.EJB;
+import javax.annotation.*;
+import javax.ejb.*;
+import javax.persistence.*;
 import javax.sql.DataSource;
+import javax.transaction.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * @author alexis
  */
 @RunWith(Arquillian.class)
+@Transactional(TransactionMode.ROLLBACK)
 public class GreeterFromDatabaseIT {
 
     @Deployment
@@ -36,14 +37,23 @@ public class GreeterFromDatabaseIT {
 
     @EJB GreeterFromDatabase greeter;
     
-    @Resource(mappedName="java:/jdbc/sample") DataSource ds;
-    
+    @Resource(mappedName="java:/jdbc/sample")
+    DataSource ds;
+
+    @PersistenceContext
+    EntityManager em;
+
+    @Resource
+    UserTransaction tx;
+
     @Before
     public void init() throws Exception {
         DatabaseInitializer dbInit = new DatabaseInitializer(ds.getConnection());
-        
+
         dbInit.clearData();
         dbInit.insertData();
+
+        em.clear();
     }
     
     @Test

@@ -1,25 +1,20 @@
 package org.sewatech.examples.arquillian.rs;
 
-import java.net.URL;
+import org.jboss.arquillian.container.test.api.*;
+import org.jboss.arquillian.junit.*;
+import org.jboss.arquillian.test.api.*;
+import org.jboss.resteasy.client.*;
+import org.jboss.shrinkwrap.api.*;
+import org.jboss.shrinkwrap.api.spec.*;
+import org.junit.*;
+import org.junit.runner.*;
 import org.sewatech.examples.arquillian.ejb.*;
-import javax.ws.rs.core.MediaType;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import javax.ws.rs.core.*;
+import java.net.*;
+
 import static org.junit.Assert.*;
 
-/**
- *
- * @author alexis
- */
 @RunWith(Arquillian.class)
 public class GreeterArqIT {
  
