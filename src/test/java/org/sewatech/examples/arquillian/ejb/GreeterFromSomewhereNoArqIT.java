@@ -1,12 +1,11 @@
 package org.sewatech.examples.arquillian.ejb;
 
-import java.util.Properties;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import static org.junit.Assert.assertEquals;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+
+import javax.naming.*;
+import java.util.*;
+
+import static org.junit.Assert.*;
 
 /**
  *
@@ -17,7 +16,7 @@ public class GreeterFromSomewhereNoArqIT {
     static GreeterFromSomewhere greeter;
     static Context context;
 
-    @BeforeClass
+    //@BeforeClass
     public static void initEJB() throws NamingException {
        Properties properties = new Properties();
        properties.put(Context.INITIAL_CONTEXT_FACTORY, 
@@ -26,7 +25,7 @@ public class GreeterFromSomewhereNoArqIT {
        greeter = (GreeterFromSomewhere) context.lookup("GreeterFromSomewhereLocalBean");
     }
 
-    @Test
+    @Test @Ignore("HS dans la plupart des profils")
     public void testGreetLocated() throws Exception {
         String who = "World";
         String expected = "Hello " + who + " from Mix-IT";

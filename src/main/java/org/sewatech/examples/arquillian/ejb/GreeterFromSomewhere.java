@@ -1,19 +1,18 @@
 package org.sewatech.examples.arquillian.ejb;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import org.sewatech.examples.arquillian.cdi.Location;
+import org.sewatech.examples.arquillian.cdi.*;
+
+import javax.ejb.*;
+import javax.inject.*;
+import javax.interceptor.*;
+import javax.ws.rs.*;
 
 /** 
  * Small example of EJB 3.1, with CDI injection
- * 
- * @author Alexis Hassler
  */
 @Stateless
 @Path("/greeterlocated")
+@Interceptors({SecurityInterceptor.class})
 public class GreeterFromSomewhere {
     
     @Inject
@@ -22,6 +21,6 @@ public class GreeterFromSomewhere {
     @GET
     @Path("/{name}")
     public String greet(@PathParam("name") String name) {
-        return "Hello " + name + " from " + location.from();
+        return "Hello " + name + " from " + location.from() + "\n";
     }
 }

@@ -2,11 +2,8 @@ package org.sewatech.examples.arquillian.cdi;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
-/**
- *
- * @author alexis
- */
 public class GreeterTest {
     
     Greeter greeter;
@@ -25,4 +22,17 @@ public class GreeterTest {
         assertEquals(expected, actual);        
     }
 
+    @Test
+    public void testGreetLocated() throws Exception {
+        Location location = mock(Location.class);
+        String where = "Nowhere";
+        when(location.from()).thenReturn(where);
+        greeter.location = location;
+
+        String who = "World";
+        String expected = "Hi " + who + " from Nowhere";
+        String actual = greeter.greetLocated(who);
+
+        assertEquals(expected, actual);
+    }
 }

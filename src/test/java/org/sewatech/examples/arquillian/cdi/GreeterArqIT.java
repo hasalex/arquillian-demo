@@ -13,10 +13,6 @@ import javax.inject.Inject;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- *
- * @author alexis
- */
 @RunWith(Arquillian.class)
 public class GreeterArqIT {
 
@@ -42,7 +38,7 @@ public class GreeterArqIT {
     @Test
     public void testGreetLocated() throws Exception {
         String who = "World";
-        String expected = "Hi " + who + " from Lyon";
+        String expected = "Hi " + who + " from JugSummerCamp";
         String actual = greeter.greetLocated(who);
 
         assertEquals(expected, actual);

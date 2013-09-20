@@ -19,9 +19,6 @@ import javax.transaction.*;
 
 import static org.junit.Assert.*;
 
-/**
- * @author alexis
- */
 @RunWith(Arquillian.class)
 @Transactional(TransactionMode.ROLLBACK)
 public class GreeterFromDatabaseIT {

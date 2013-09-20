@@ -1,0 +1,20 @@
+package org.sewatech.examples.arquillian.ejb;
+
+import javax.annotation.*;
+import javax.interceptor.*;
+import java.security.*;
+
+public class SecurityInterceptor {
+
+    @Resource Principal principal;
+
+    @AroundInvoke
+    public Object intercept(InvocationContext ctx) throws Exception
+    {
+        if (principal == null) {
+            throw new SecurityException("Aaaaaaaargh, don't have a principal");
+        } else {
+            return ctx.proceed();
+        }
+    }
+}

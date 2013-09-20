@@ -1,11 +1,8 @@
 package org.sewatech.examples.arquillian.cdi;
 
-/** 
- * @author Alexis Hassler
- */
 public class Location {
     
-    private String placeName = "Lyon";
+    private String placeName = "JugSummerCamp";
     
     public String from() {
         return placeName;

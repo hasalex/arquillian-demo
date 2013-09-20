@@ -4,8 +4,6 @@ import javax.inject.Inject;
 
 /** 
  * Small example of CDI 1.0 bean
- * 
- * @author Alexis Hassler
  */
 public class Greeter {
     

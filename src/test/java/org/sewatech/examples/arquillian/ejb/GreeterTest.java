@@ -3,10 +3,6 @@ package org.sewatech.examples.arquillian.ejb;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author alexis
- */
 public class GreeterTest {
     
     Greeter greeter;
