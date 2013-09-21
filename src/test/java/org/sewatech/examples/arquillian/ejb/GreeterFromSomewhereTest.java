@@ -20,6 +20,7 @@ public class GreeterFromSomewhereTest {
         Location location = mock(Location.class);
         String where = "Nowhere";
         when(location.from()).thenReturn(where);
+        greeter.location = location;
 
         String who = "World";
         String expected = "Hello " + who + " from " + where + "\n";

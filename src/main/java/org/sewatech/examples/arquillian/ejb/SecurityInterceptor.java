@@ -1,12 +1,12 @@
 package org.sewatech.examples.arquillian.ejb;
 
-import javax.annotation.*;
+import javax.inject.*;
 import javax.interceptor.*;
 import java.security.*;
 
 public class SecurityInterceptor {
 
-    @Resource Principal principal;
+    @Inject Principal principal;
 
     @AroundInvoke
     public Object intercept(InvocationContext ctx) throws Exception
